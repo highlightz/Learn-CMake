@@ -1,0 +1,25 @@
+# Command line
+$ cd ~
+$ mkdir src doc build
+$ touch CMakeLists.txt COPYRIGHT README runhello.sh
+
+# Edit file 'CMakeLists.txt'
+PROJECT( HELLO )
+ADD_SUBDIRECTORY( src )
+# Install
+INSTALL( FILES COPYRIGHT README DESTINATION share/doc/cmake/t2 )
+INSTALL( PROGRAMS runhello.sh DESTINATION bin )
+INSTALL( DIRECTORY doc/ DESTINATION share/doc/cmake/t2 )
+
+$ cd doc
+$ touch hello.txt
+
+$ cd ../src
+$ touch CMakeLists.txt main.c
+
+# Edit file 'CMakeLists.txt'
+ADD_EXECUTABLE( hello main.c )
+
+SET( EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin )
+
+INSTALL( TARGETS hello RUNTIME DESTINATION bin )
